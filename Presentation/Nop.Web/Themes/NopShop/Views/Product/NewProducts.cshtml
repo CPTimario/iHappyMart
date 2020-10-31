@@ -1,0 +1,44 @@
+﻿@model IList<ProductOverviewModel>
+@{
+    Layout = "~/Views/Shared/_ColumnsOne.cshtml";
+
+    //title
+    Html.AddTitleParts(T("PageTitle.NewProducts").Text);
+}
+@using Nop.Web.Models.Catalog;
+
+<div class="features_items container"><!--features_items-->
+    <h2 class="title text-center">Our Healthy Products<a href="@Url.RouteUrl("NewProducts")"></a></h2>
+    <div class="sub-title text-center container">
+        <h4>Premium cooking oils made from organic coconuts</h4>
+    </div>
+    <div class="custom-page-box-border-less-div">    
+        @if (Model.Count > 0)
+        {
+        
+            <div class="product-grid home-page-product-grid">
+                <div class="row">
+                    
+                    @foreach (var product in Model)
+                    {
+
+                        <div class="col-md-4">
+                            <div class="offer offer-default silde-show-offer pull-text-center">
+                                @Html.Partial("_ProductBox", product)
+                            </div>
+                        </div>
+
+                    }
+                </div>
+            </div>
+        
+
+        }else
+        {
+            <div class="alert alert-info square-box">
+                No New Products are Available
+            </div>
+        }
+
+    </div>
+</div>

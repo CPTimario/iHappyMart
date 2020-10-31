@@ -1,0 +1,132 @@
+﻿@model ContactUsModel
+@using Nop.Web.Models.Common;
+@{
+    Layout = "~/Views/Shared/_ColumnsOne.cshtml";
+
+    //title
+    Html.AddTitleParts(T("PageTitle.ContactUs").Text);
+}
+
+
+<div class="container features_items">
+    <!--features_items-->
+    <h2 class="title text-center">@T("PageTitle.ContactUs")</h2>
+    <h3 class="text-center font-color-brown">Let's talk</h3>
+
+    @*<h1>Im here</h1>*@
+    <div class="">
+        <div class="col-md-6 float-remover force-center product-details">
+            @Html.Widget("contactus_top")
+            <div class="custom-page-box-div">
+                @if (Model.SuccessfullySent)
+            {
+                    <div class="result alert alert-success square-box">
+                        @Model.Result
+                    </div>
+                }
+                else
+                {
+                    using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="message-error">
+                            @Html.ValidationSummary(true)
+                        </div>
+                        <div class="center-object">
+                            <div class="form-fields ">
+
+                                <div class="inputs-left">
+
+                                    <div class="form-group row">
+                                        <div class="col-md-2"></div>
+                                        @Html.LabelFor(model => model.FullName, new { @class = "col-md-8 control-label-contactus padding-bottom" }, "")
+                                        <div class="col-md-8 force-center float-remover padding-bottom">
+                                            @Html.TextBoxFor(model => model.FullName, new { @class = "gray-input", placeholder = T("ContactUs.FullName.Hint") })
+                                        </div>
+                                        <div class="col-md-8 text-center">
+                                            @Html.ValidationMessageFor(model => model.FullName)
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group row">
+                                        <div class="col-md-2"></div>
+                                        @Html.LabelFor(model => model.Email, new { @class = "col-md-8 control-label-contactus padding-bottom" }, "")
+                                        <div class="col-md-8 force-center float-remover padding-bottom">
+                                            @Html.TextBoxFor(model => model.Email, new { @class = "gray-input", placeholder = T("ContactUs.Email.Hint") })
+                                        </div>
+                                        <div class="col-md-8 text-center">
+                                            @Html.ValidationMessageFor(model => model.Email)
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-md-2"></div>
+                                        @Html.LabelFor(model => model.Subject, new { @class = "col-md-8 control-label-contactus" }, "")
+                                        <div class="col-md-8 force-center float-remover padding-bottom">
+                                            @Html.TextBoxFor(model => model.Subject, new { @class = "gray-input", placeholder = T("ContactUs.Subject.Hint") })
+                                        </div>
+                                        <div class="col-md-8 text-center">
+                                            @Html.ValidationMessageFor(model => model.Subject)
+                                        </div>
+                                    </div>
+                                    @if (Model.DisplayCaptcha)
+                                    {
+                                        <div class="captcha-box">
+                                            @Html.Raw(Html.GenerateCaptcha())
+                                        </div>
+                                    }
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-md-2"></div>
+                                    @Html.LabelFor(model => model.Enquiry, new { @class = "col-md-8 control-label-contactus padding-bottom" }, "")
+
+                                    <div class="col-md-8 force-center float-remover">
+                                        @Html.TextAreaFor(model => model.Enquiry, new { @class = "gray-textarea margin-bottom-remover", placeholder = T("ContactUs.Enquiry.Hint") })
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-8 margin-bottom-remover text-center">
+                                        @Html.ValidationMessageFor(model => model.Enquiry)
+                                    </div>
+                                </div>
+                                <div class="buttons force-center float-remover">
+                                    <input type="submit" name="send-email" class="button-1 register-next-step-button btn btn-primary force-center float-remover col-md-5 button-contactus" value="@T("ContactUs.Button")" />
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    }
+                }
+            </div>
+
+        </div>
+
+        @Html.Widget("contactus_bottom")
+    </div>
+
+</div>
+<div class="force-center col-sm-3 float-remover padding-bottom">
+    <div class="location-label-strong">
+        <h4>The Aruga Co. Ltd</h4>
+        <p>+852 3625 5806</p>
+        <p>info@cocovital.hk</p>
+        <p>Room 2113, 21/F, Landmark North,</p>
+        <p>39, Lung Sum Avenue,</p>
+        <p>Sheung Shui, N.T., Hong Kong</p>
+    </div>
+</div><br />
+@*<div>
+    <iframe style="border: 0;" src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d541.6401898649448!2d114.12741459110165!3d22.50252702705537!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e0!4m0!4m5!1s0x3403f611a71dacf3%3A0x7d53684cffcfc72b!2sLandmark+North%2C+39+Lung+Sum+Ave%2C+Sheung+Shui%2C+Hong+Kong!3m2!1d22.502707599999997!2d114.1278384!5e0!3m2!1sen!2s!4v1484350130360" width="100%" height="250" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+</div>*@
+<div class="get-healthy-container">
+    <h2 class="get-healthy-title">STAY HEALTHY</h2>
+    <div class="sub-title">
+        <h4>Be on top of your game.</h4>
+    </div>
+    <button type="button" class="btn btn-primary get-healthy-button">
+        <a class="product-name-a" href="/en/newproducts">See Our Products</a>
+    </button>
+</div>

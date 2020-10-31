@@ -1,0 +1,61 @@
+﻿<div class="header-middle">
+    <!--header-middle-->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+
+
+
+                
+                <div class="section group">
+                    
+                    <div class="logo col span_1_of_4">
+                            <a class="logo img-responsive" href="@Url.RouteUrl("HomePage")"></a>
+                    </div>
+                    <div class="col span_2_of_4 social-media-header">
+
+                        <ul>
+                            <li><a href="#" class="icon-twitter-header text-center"></a></li>
+                            <li><a href="#" class="icon-fb-header text-center"></a></li>
+                            <li><a href="#" class="icon-link-in-header text-center"></a></li>
+                        </ul>
+
+                    </div>
+                    <div class="col span_3_of_4">
+                        <div class="grid-searchbox">
+                            @Html.Action("SearchBox", "Catalog")
+                        </div>
+                    </div>
+                    <div class="col span_4_of_4">
+                        <div class="text-center">
+                            @Html.Action("HeaderLinks", "Common")
+                        </div>
+                    </div>
+                </div>
+                        @*@Html.Action("CurrencySelector", "Common")
+                          @Html.Action("LanguageSelector", "Common")
+                          @Html.Action("TaxTypeSelector", "Common")*@
+
+                        @*<div class="col-md-6">
+                            </div>*@
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            @Html.Partial("_Notifications")
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+

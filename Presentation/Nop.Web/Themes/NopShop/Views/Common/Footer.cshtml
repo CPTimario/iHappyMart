@@ -1,0 +1,184 @@
+﻿@model FooterModel
+@using Nop.Web.Extensions
+@using Nop.Web.Models.Common;
+@using Nop.Core
+@using Nop.Core.Domain.Tax
+@using Nop.Core.Infrastructure
+<footer id="footer">
+    <!--Footer-->
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+                <h2 class="get-healthy-title">Shops</h2>
+                <div class="footer-location col-md-12">
+                    <br/>
+                    <div class="col-md-3">
+                        <img src="~/Content/Coco-Vtal/graphics/icon-location.png" />
+                        <h5>Hong Kong Central</h5>
+                        <p>Health Essential<br>8/F, Hung Tak Building, 108, Des Voeux Road, Central, Hong Kong Tel: 2545 2286</p>
+                    </div>
+                    <div class="col-md-3">
+                        <img src="~/Content/Coco-Vtal/graphics/icon-location.png" />
+                        <h5>Hong Kong Island</h5>
+                        <p>A Star Coconut<br>177, Hennesssy Road, Wan Chai</p>
+                        <p>I-Detox 1/F, V-Plus, 68-70, Wellington St., Central</p>
+                        <p>Health Aims G/F, 27, Electric Road, Tin Hau (MTR station exit A2)</p>
+                    </div>
+                    <div class="col-md-3">
+                        <img src="~/Content/Coco-Vtal/graphics/icon-location.png" />
+                        <h5>Kowloon</h5>
+                        <p>A Star Coconut<br> 39, South Wall Road, Kowloon City</p>
+                        <p>Health Aims Shop 728, Metropolis Mall, 6, Metropolis Drive, Hung Hom (MTR station exit C)</p>
+                    </div>
+                    <div class="col-md-3">
+                        <img src="~/Content/Coco-Vtal/graphics/icon-location.png" />
+                        <h5>New Territories</h5>
+                        <p>Health Aims Shop<br>
+                         2118, Level 2, Ma On Shan Plaza (MTR station exit A)</p>
+                        <p>T.C. Deli Shop 10-12B G/F Hang Hau Village, Tseung Kwan O, Hong Kong Tel: 2358 2332</p>
+                        <p>Chung Heng Organic Shop 112, Man Nin St., Sai Kung</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-container container">
+        <div class="footer-navbar col-md-12">
+            <div class="footer-bar col-md-10">
+                <p>©2017 Coco Vital, Inc.</p>
+                <ul>
+                    <li><a href="@Url.RouteUrl("HomePage")">Home</a></li>
+                    <li><a href="@Url.RouteUrl("AboutUs")">AboutUs</a></li>
+                    <li><a href="@Url.RouteUrl("NewProducts")">Products</a></li>
+                    <li><a href="@Url.RouteUrl("Resources")">Resources</a></li>
+                    <li><a href="@Url.RouteUrl("FAQ")">FAQ</a></li>
+                    <li><a href="@Url.RouteUrl("ContactUs")">@T("ContactUs")</a></li>
+                </ul>
+            </div>
+            <div class="social-media col-md-2">
+                <ul>
+                    <li><a href="#" class="icon-twitter"></a></li>
+                    <li><a href="#" class="icon-fb"></a></li>
+                    <li><a href="#" class="icon-link-in"></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    @Html.Widget("footer")
+
+</footer>
+<!--/Footer-->
+@*<div class="footer-widget">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="single-widget">
+                        <h2>@T("Footer.Information")</h2>
+                        <ul class="nav nav-pills nav-stacked">
+                            @if (Model.SitemapEnabled)
+                            {
+                                <li><a href="@Url.RouteUrl("Sitemap")">@T("Sitemap")</a></li>
+                            }
+                            @foreach (var topic in Model.Topics.Where(x => x.IncludeInFooterColumn1).ToList())
+                            {
+                                <li><a href="@Url.RouteUrl("Topic", new { SeName = topic.SeName })">@topic.Name</a></li>
+                            }
+                            <li><a href="@Url.RouteUrl("ContactUs")">@T("ContactUs")</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="single-widget">
+                        <h2>@T("Footer.CustomerService")</h2>
+                        <ul class="nav nav-pills nav-stacked">
+                            <li><a href="@Url.RouteUrl("ProductSearch")">@T("Search")</a> </li>
+                            @if (Model.NewsEnabled)
+                            {
+                                <li><a href="@Url.RouteUrl("NewsArchive")">@T("News")</a></li>
+                            }
+                            @if (Model.BlogEnabled)
+                            {
+                                <li><a href="@Url.RouteUrl("Blog")">@T("Blog")</a></li>
+                            }
+                            @if (Model.ForumEnabled)
+                            {
+                                <li><a href="@Url.RouteUrl("Boards")">@T("Forum.Forums")</a></li>
+                            }
+                            @if (Model.RecentlyViewedProductsEnabled)
+                            {
+                                <li><a href="@Url.RouteUrl("RecentlyViewedProducts")">@T("Products.RecentlyViewedProducts")</a></li>
+                            }
+                            @if (Model.CompareProductsEnabled)
+                            {
+                                <li><a href="@Url.RouteUrl("CompareProducts")">@T("Products.Compare.List")</a></li>
+                            }
+                            @if (Model.NewProductsEnabled)
+                            {
+                                <li><a href="@Url.RouteUrl("NewProducts")">@T("Products.NewProducts")</a></li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="single-widget">
+                        <h2>@T("Footer.MyAccount")</h2>
+                        <ul class="nav nav-pills nav-stacked">
+                            <li><a href="@Url.RouteUrl("CustomerInfo")" class="account">@T("Account.MyAccount")</a></li>
+                            @if (Model.AllowCustomersToApplyForVendorAccount)
+                            {
+                                <li><a href="@Url.RouteUrl("ApplyVendorAccount")">@T("Vendors.ApplyAccount")</a></li>
+                            }
+                            @if (Model.ShoppingCartEnabled)
+                            {
+                                <li><a href="@Url.RouteUrl("ShoppingCart")" class="ico-cart">@T("ShoppingCart")</a></li>
+                            }
+                            @if (Model.WishlistEnabled)
+                            {
+                                <li><a href="@Url.RouteUrl("Wishlist")" class="ico-wishlist">@T("Wishlist")</a></li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    @Html.Action("NewsletterBox", "Newsletter")
+
+                </div>
+
+            </div>
+        </div>
+    </div>*@
+
+@*<div class="footer-bottom">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-sm-4 text-left">
+                    Powered by <a href="http://www.nopcommerce.com/">nopCommerce</a>
+                    @*Would you like to remove the "Powered by nopCommerce" link in the bottom of the footer?
+                        Find more info here http://www.nopcommerce.com/copyrightremoval.aspx
+
+
+                </div>
+                <div class="col-sm-4 text-center">
+                    @T("Content.CopyrightNotice", DateTime.Now.Year.ToString(), Model.StoreName)
+                </div>
+
+                <div class="col-sm-4 text-right">
+                    Designed by <span><a target="_blank" href="http://www.themeum.com">Themeum</a> & <a target="_blank" href="http://www.brainstation-23.com">Brain Station-23</a></span>
+                </div>
+
+                @if (Model.DisplayTaxShippingInfoFooter)
+                {
+                    var inclTax = EngineContext.Current.Resolve<IWorkContext>().TaxDisplayType == TaxDisplayType.IncludingTax;
+                    <div class="footer-tax-shipping text-center">
+                        @T(inclTax ? "Footer.TaxShipping.InclTax" : "Footer.TaxShipping.ExclTax", Url.RouteUrl("Topic", new { SeName = Html.GetTopicSeName("shippinginfo") }))
+                    </div>
+                }
+                <div class="col-sm-offset-4 col-sm-4 text-center">
+                    @Html.Action("StoreThemeSelector", "Common")
+                </div>
+            </div>
+        </div>
+    </div>*@
+
